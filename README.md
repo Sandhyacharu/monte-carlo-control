@@ -26,7 +26,45 @@ Repeat steps 2-4 for a specified number of episodes or until convergence.
 Return the optimal Q-values, state-value function, and policy.
 
 ## MONTE CARLO CONTROL FUNCTION
-Include the Monte Carlo control function
+```python3
+import numpy as np
+from collections import defaultdict
+
+def mc_control(env, gamma=1.0, init_alpha=0.5, min_alpha=0.01, alpha_decay_ratio=0.5,
+               init_epsilon=1.0, min_epsilon=0.1, epsilon_decay_ratio=0.9,
+               n_episodes=3000, max_steps=200, first_visit=True):
+
+    nS, nA = env.observation_space.n, env.action_space.n
+    Q = defaultdict(lambda: np.zeros(nA))
+    V = defaultdict(float)
+    pi = defaultdict(lambda: np.random.choice(nA))
+    Q_track = []
+    pi_track = []
+
+    select_action = lambda state,Q, epsilon: np.argmax(Q[state]) if np.random.random() > epsilon else np.random.randint(len(Q[state]))
+
+    for episode in range(n_episodes):
+        epsilon = max(init_epsilon * (epsilon_decay_ratio ** episode), min_epsilon)
+        alpha = max(init_alpha * (alpha_decay_ratio ** episode), min_alpha)
+        trajectory = generate_trajectory(select_action, Q, epsilon, env, max_steps)
+        n = len(trajectory)
+        G = 0
+        for t in range(n - 1, -1, -1):
+            state, action, reward, _, _ = trajectory[t]
+            G = gamma * G + reward
+            if first_visit and (state, action) not in [(s, a) for s, a, _, _, _ in trajectory[:t]]:
+                Q[state][action] += alpha * (G - Q[state][action])
+                V[state] = np.max(Q[state])
+                pi[state] = np.argmax(Q[state])
+        Q_track.append(Q.copy())
+        pi_track.append(pi.copy)
+    return Q, V, pi
+
+optimal_Q, optimal_V, optimal_pi = mc_control(env)
+print_state_value_function(optimal_Q, P,n_cols=4, prec=2, title='Action-value-function')
+print_state_value_function(optimal_Q, P,n_cols=4, prec=2, title='State-value-function')
+print_policy(optimal_pi,P)
+```
 
 ## OUTPUT:
 ![image](https://github.com/Sandhyacharu/monte-carlo-control/assets/75235167/a22c29d6-77de-4529-bee6-f40972d6b0e0)
