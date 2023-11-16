@@ -25,6 +25,7 @@ Update the policy based on the improved Q-values.
 Repeat steps 2-4 for a specified number of episodes or until convergence.
 
 <br>
+<br>
 
 ### Step 6:
 Return the optimal Q-values, state-value function, and policy.
