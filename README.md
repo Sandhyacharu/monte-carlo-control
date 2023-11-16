@@ -24,9 +24,6 @@ Update the policy based on the improved Q-values.
 ### Step 5:
 Repeat steps 2-4 for a specified number of episodes or until convergence.
 
-<br>
-<br>
-
 ### Step 6:
 Return the optimal Q-values, state-value function, and policy.
 
@@ -73,8 +70,6 @@ print_state_value_function(optimal_Q, P,n_cols=4, prec=2, title='Action-value-fu
 print_state_value_function(optimal_Q, P,n_cols=4, prec=2, title='State-value-function')
 print_policy(optimal_pi,P)
 ```
-
-<br>
 
 ## OUTPUT:
 ![image](https://github.com/Sandhyacharu/monte-carlo-control/assets/75235167/a22c29d6-77de-4529-bee6-f40972d6b0e0)
