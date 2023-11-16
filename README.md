@@ -74,6 +74,8 @@ print_state_value_function(optimal_Q, P,n_cols=4, prec=2, title='State-value-fun
 print_policy(optimal_pi,P)
 ```
 
+<br>
+
 ## OUTPUT:
 ![image](https://github.com/Sandhyacharu/monte-carlo-control/assets/75235167/a22c29d6-77de-4529-bee6-f40972d6b0e0)
 
