@@ -1,4 +1,6 @@
-# MONTE CARLO CONTROL ALGORITHM
+### EX NO: 05
+### DATE:
+# <p align="center">MONTE CARLO CONTROL ALGORITHM</p>
 
 ## AIM
 The aim of Monte Carlo Control is to develop an optimal policy for a Markov Decision Process (MDP) by estimating the value function and improving the policy through repeated sampling and evaluation of episodes. This technique is used in reinforcement learning to find the best actions to take in each state in order to maximize cumulative rewards.
@@ -27,6 +29,9 @@ Return the optimal Q-values, state-value function, and policy.
 
 ## MONTE CARLO CONTROL FUNCTION
 ```python3
+# Developed by: Sandhya Charu N
+# Register Number: 212220230041
+
 import numpy as np
 from collections import defaultdict
 
